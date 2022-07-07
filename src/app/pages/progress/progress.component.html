@@ -6,11 +6,19 @@
         <div class="progress m-t-20">
           <div
             class="progress-bar bg-primary progress-bar-striped active"
-            style="width: 50%; height: 10px"
+            style="height: 10px"
             role="progressbar"
-          >
-            <span class="sr-only">85% Complete (success)</span>
-          </div>
+            [style.width]="getPercent1"
+          ></div>
+        </div>
+
+        <div class="progress m-t-20">
+          <div
+            class="progress-bar bg-info progress-bar-striped active"
+            style="height: 10px"
+            role="progressbar"
+            [style.width]="getPercent2"
+          ></div>
         </div>
       </div>
     </div>
@@ -20,21 +28,22 @@
   <div class="col-6">
     <div class="card">
       <div class="card-body">
-        <div class="input-group">
-          <span class="input-group-btn">
-            <button class="btn btn-danger" type="button">Hate it</button>
-          </span>
-          <input type="text" class="form-control" placeholder="Product name" />
-          <span class="input-group-btn">
-            <button class="btn btn-success" type="button">Love it</button>
-          </span>
-        </div>
+        <app-increaser
+          (emitPercent)="progress1 = $event"
+          [value]="progress1"
+        ></app-increaser>
       </div>
     </div>
   </div>
   <div class="col-6">
     <div class="card">
-      <div class="card-body">2</div>
+      <div class="card-body">
+        <app-increaser
+          (emitPercent)="progress2 = $event"
+          [value]="progress2"
+          [btnClass]="'btn-info'"
+        ></app-increaser>
+      </div>
     </div>
   </div>
 </div>
